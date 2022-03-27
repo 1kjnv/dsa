@@ -1,75 +1,69 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define SIZE 10
-int cnt = 0;
+#include <limits.h>
 
 struct stack
 {
-	int items[SIZE];
+	int* items;
 	int top;
+	unsigned capacity;
 };
-typedef struct stack st;
 
-void createEmptyStack(st *s)
+struct stack* create(unsigned capacity)
 {
+	struct stack* s = (struct stack*) malloc(sizeof(struct stack));
+	s->capacity = capacity;
 	s->top = -1;
+	s->items = (int*) malloc(sizeof(int) * s->capacity);
+
+	return s;
 }
 
-// check if the stack is full
-int isFull(st *s)
+int isFull(struct stack* s)
 {
-	if(s->top == SIZE-1)
-	{
-		return 1;
-	}
-	return 0;
+	return (s->top == s->capacity - 1);
 }
 
-// check if the stack is empty
-int isEmpty(st *s)
+int isEmpty(struct stack* s)
 {
-	if(s->top == -1)
-	{
-		return 1;
-	}
-	return 0;
+	return (s->top == -1);
 }
 
-// push into the stack
-void push(st *s, int val)
+void push(struct stack* s, int val)
 {
 	if(isFull(s))
 	{
-		printf("The Stack is Full!\n");
 		return;
 	}
-	s->top++;
-	s->items[s->top] = val;
-	cnt++;
+	s->items[++s->top] = val;
 }
 
-// pop an element from the stack
-int pop(st *s)
+int pop(struct stack* s)
 {
 	if(isEmpty(s))
 	{
-		printf("The Stack is Empty!\n");
-		return -1;
+		return INT_MIN;
 	}
-	cnt--;
 	return s->items[s->top--];
 }
 
-// print stack items
-void printStacK(st *s)
+int peek(struct stack* s)
 {
 	if(isEmpty(s))
 	{
-		printf("The stack is empty!\n");
+		return INT_MIN;
+	}
+	return s->items[s->top];
+}
+
+void printStack(struct stack* s)
+{
+	if(isEmpty(s))
+	{
+		printf("EMPTY STACK!\n");
 		return;
 	}
-	for(int i = 0; i < cnt; i++)
+	for(int i = 0; i <= s->top; i++)
 	{
 		printf("%d ", s->items[i]);
 	}
@@ -78,21 +72,18 @@ void printStacK(st *s)
 
 int main()
 {
-	st *s = (st *) malloc(sizeof(st));
+	struct stack* s = create(20);
+	
+	push(s, 10);
+	push(s, 20);
+	push(s, 30);
 
-	createEmptyStack(s);
-
-	push(s, 1);
-	push(s, 2);
-	push(s, 3);
-	push(s, 4);
-	push(s, 5);
-
-	printStacK(s);
+	printStack(s);
 
 	pop(s);
+	printStack(s);
 
-	printStacK(s);
+	printf("\nPeek: %d\n", peek(s));
 
 	return 0;
 }
