@@ -58,7 +58,7 @@ void append(struct node **head, int val)
 	tmp->next = newNode;
 }
 
-// delete a pointer to the head
+// given a pointer to the head
 // and a key, delete the first occurrence
 // of the key in the list ITERATIVELY
 void delete(struct node **head, int key)
