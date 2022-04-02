@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 void merge(int *nums, int left, int middle, int right)
 {
