@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <limits.h>
 
+// queue implementation using arrays
 struct Queue
 {
 	int front, rear, size;
