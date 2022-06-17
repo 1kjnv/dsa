@@ -7,6 +7,36 @@ struct node
 	struct node *next;
 };
 
+struct node* new(int val);
+void push(struct node **head, int val);
+void insert_after(struct node *prev, int val);
+void append(struct node **head, int val);
+void delete(struct node **head, int key);
+void delete_r(struct node **head, int key);
+void traverse(struct node *head);
+
+int main()
+{
+	struct node *head = new(23);
+
+	push(&head, 24);
+	push(&head, 64);
+	push(&head, 13);
+
+	insert_after(head, 112);
+
+	append(&head, 97);
+	delete(&head, 64);
+	delete_r(&head, 13);
+
+	printf("traverse: ");
+	traverse(head);
+
+	free(head);
+
+	return 0;
+}
+
 struct node* new(int val)
 {
 	struct node* tmp = (struct node*) malloc(sizeof(struct node));
@@ -18,7 +48,7 @@ struct node* new(int val)
 
 // insert a new node at the beginning
 // Time complexity is O(1)
-void insert(struct node **head, int val)
+void push(struct node **head, int val)
 {
 	struct node *newNode = new(val);
 	newNode->next = *head;
@@ -27,7 +57,7 @@ void insert(struct node **head, int val)
 
 // insert after a given node
 // Time complexity is O(1)
-void insertAfter(struct node *prev, int val)
+void insert_after(struct node *prev, int val)
 {
 	if(prev == NULL)
 	{
@@ -118,23 +148,3 @@ void traverse(struct node *head)
 	printf("\n");
 }
 
-int main()
-{
-	struct node *head = new(23);
-
-	insert(&head, 24);
-	insert(&head, 64);
-	insert(&head, 13);
-
-	insertAfter(head, 112);
-
-	append(&head, 97);
-	delete(&head, 64);
-	delete_r(&head, 13);
-
-	traverse(head);
-
-	free(head);
-
-	return 0;
-}

@@ -1,6 +1,30 @@
 #include <stdio.h>
 
 int size = 0;
+
+void swap(int *a, int *b);
+void heapify(int arr[], int size, int i);
+void insert(int arr[], int val);
+void delete(int arr[], int val);
+void print_array(int arr[], int size);
+
+int main(void)
+{
+	int arr[10];
+
+	insert(arr, 2);
+	insert(arr, 4);
+	insert(arr, 5);
+	insert(arr, 7);
+	insert(arr, 8);
+	insert(arr, 12);
+	
+	printf("Priority queue: ");
+	print_array(arr, size);
+
+	return 0;
+}
+
 void swap(int *a, int *b)
 {
 	int tmp = *a;
@@ -75,19 +99,3 @@ void print_array(int arr[], int size)
 	printf("\n");
 }
 
-int main(void)
-{
-	int arr[10];
-
-	insert(arr, 2);
-	insert(arr, 4);
-	insert(arr, 5);
-	insert(arr, 7);
-	insert(arr, 8);
-	insert(arr, 12);
-	
-	printf("Priority queue: ");
-	print_array(arr, size);
-
-	return 0;
-}

@@ -7,6 +7,32 @@ struct node
 	struct node *left, *right;
 };
 
+struct node* new(int val);
+void preorder(struct node *root);
+void inorder(struct node *root);
+void postorder(struct node *root);
+
+int main()
+{
+	struct node *root = new(1);
+	root->left = new(2);
+	root->right = new(54);
+
+	printf("Preorder: ");
+	preorder(root);
+	printf("\n");
+
+	printf("Inorder: ");
+	inorder(root);
+	printf("\n");
+
+	printf("Postorder: ");
+	postorder(root);
+	printf("\n");
+
+	return 0;
+}
+
 struct node* new(int val)
 {
 	struct node *newNode = (struct node*)malloc(sizeof(struct node));
@@ -52,20 +78,3 @@ void postorder(struct node *root)
 	printf("%d ", root->data);
 }
 
-int main()
-{
-	struct node *root = new(1);
-	root->left = new(2);
-	root->right = new(54);
-
-	preorder(root);
-	printf("\n");
-
-	inorder(root);
-	printf("\n");
-
-	postorder(root);
-	printf("\n");
-
-	return 0;
-}

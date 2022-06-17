@@ -7,6 +7,26 @@ struct node
 	struct node *next;
 };
 
+struct node* new(int val);
+void push(struct node **head, int val);;
+void traverse(struct node *n);
+
+int main()
+{
+	struct node *head = new(1);
+
+	push(&head, 23);
+	push(&head, 56);
+	push(&head, 67);
+
+	printf("traversal: ");
+	traverse(head);
+
+	free(head);
+
+	return 0;
+}
+
 struct node* new(int val)
 {
 	struct node *newNode = (struct node*) malloc(sizeof(struct node));
@@ -39,7 +59,7 @@ void push(struct node **head, int val)
 }
 
 // traverse forward
-void traverse_f(struct node *n)
+void traverse(struct node *n)
 {
 	struct node *tmp = n;
 	if(n != NULL)
@@ -52,17 +72,3 @@ void traverse_f(struct node *n)
 	printf("\n");
 }
 
-int main()
-{
-	struct node *head = new(1);
-
-	push(&head, 23);
-	push(&head, 56);
-	push(&head, 67);
-
-	traverse_f(head);
-
-	free(head);
-
-	return 0;
-}

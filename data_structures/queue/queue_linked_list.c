@@ -12,6 +12,26 @@ struct queue
     struct node *front, *rear;
 };
 
+struct node* new(int val);
+struct queue* create_queue();
+void enqueue(struct queue *q, int val);
+void dequeue(struct queue *q);
+
+int main()
+{
+    struct queue *q = create_queue();
+    enqueue(q, 10);
+    enqueue(q, 20);
+    enqueue(q, 30);
+
+    dequeue(q);
+
+    printf("Front: %d\n", q->front->data);
+    printf("Rear: %d\n", q->rear->data);
+
+    return 0;
+}
+
 struct node* new(int val)
 {
     struct node *tmp = (struct node*) malloc(sizeof(struct node));
@@ -20,7 +40,7 @@ struct node* new(int val)
     return tmp;
 }
 
-struct queue* create_q()
+struct queue* create_queue()
 {
     struct queue* q = (struct queue*) malloc(sizeof(struct queue));
     q->front = q->rear = NULL;
@@ -56,17 +76,3 @@ void dequeue(struct queue* q)
     free(tmp);
 }
 
-int main()
-{
-    struct queue *q = create_q();
-    enqueue(q, 10);
-    enqueue(q, 20);
-    enqueue(q, 30);
-
-    dequeue(q);
-
-    printf("Front: %d\n", q->front->data);
-    printf("Rear: %d\n", q->rear->data);
-
-    return 0;
-}

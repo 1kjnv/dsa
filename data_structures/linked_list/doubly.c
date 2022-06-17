@@ -7,6 +7,36 @@ struct node
 	struct node *prev, *next;
 };
 
+struct node* new(int val);
+void push(struct node **head, int val);
+void insert_after(struct node **prev, int val);
+void append(struct node **head, int val);
+void traverse(struct node *head);
+
+int main()
+{
+	struct node *head = new(3);
+	struct node *second = new(35);
+	struct node *third = new(53);
+	struct node *fourth = new(857);
+
+	head->next = second;
+	second->next = third;
+	second->prev = head;
+	third->next = fourth;
+	third->prev = second;
+	fourth->prev = third;
+
+	push(&head, 1);
+	insert_after(&second, 65);
+	append(&fourth, 988);
+
+	printf("traverse: ");
+	traverse(head);
+
+	return 0;
+}
+
 struct node* new(int val)
 {
 	struct node *newNode = (struct node*) malloc(sizeof(struct node));
@@ -31,7 +61,7 @@ void push(struct node **head, int val)
 }
 
 // insert after a given node
-void insertAfter(struct node **prev, int val)
+void insert_after(struct node **prev, int val)
 {
 	if(prev == NULL)
 	{
@@ -66,8 +96,8 @@ void append(struct node **head, int val)
 	newNode->prev = tmp;
 }
 
-// traverse forwards
-void traverse_f(struct node *head)
+// traverse
+void traverse(struct node *head)
 {
 	while(head != NULL)
 	{
@@ -75,38 +105,4 @@ void traverse_f(struct node *head)
 		head = head->next;
 	}
 	printf("\n");
-}
-
-void traverse_b(struct node *n)
-{
-	while(n != NULL)
-	{
-		printf("%d ", n->data);
-		n = n->prev;
-	}
-	printf("\n");
-}
-
-int main()
-{
-	struct node *head = new(3);
-	struct node *second = new(35);
-	struct node *third = new(53);
-	struct node *fourth = new(857);
-
-	head->next = second;
-	second->next = third;
-	second->prev = head;
-	third->next = fourth;
-	third->prev = second;
-	fourth->prev = third;
-
-	push(&head, 1);
-	insertAfter(&second, 65);
-	append(&fourth, 988);
-
-	traverse_f(head);
-	traverse_b(fourth);
-
-	return 0;
 }

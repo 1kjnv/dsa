@@ -1,5 +1,25 @@
 #include <stdio.h>
 
+void swap(int *a, int *b);
+void heapify(int arr[], int size, int i);
+void build_heap(int arr[], int size);
+void print_heap(int arr[], int size);
+
+int main(void)
+{
+	int arr[] = { 1,3,5,4,6,13,10,9,8,15,17 };
+	int size = sizeof(arr) / sizeof(arr[0]);
+
+	printf("Before: ");
+	print_heap(arr, size);
+
+	build_heap(arr, size);
+	printf("After: ");
+	print_heap(arr, size);
+
+	return 0;
+}
+
 void swap(int *a, int *b)
 {
 	int tmp = *a;
@@ -47,17 +67,3 @@ void print_heap(int arr[], int size)
 	printf("\n");
 }
 
-int main(void)
-{
-	int arr[] = { 1,3,5,4,6,13,10,9,8,15,17 };
-	int size = sizeof(arr) / sizeof(arr[0]);
-
-	printf("Before: ");
-	print_heap(arr, size);
-
-	build_heap(arr, size);
-	printf("After: ");
-	print_heap(arr, size);
-
-	return 0;
-}

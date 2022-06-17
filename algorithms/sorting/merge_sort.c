@@ -1,5 +1,25 @@
 #include <stdio.h>
 
+void merge(int* nums, int left, int middle, int right);
+void merge_sort(int* nums, int left, int right);
+void print_array(int* nums, int arr_size);
+
+int main()
+{
+	int nums[] = { 12, 11, 13, 5, 6, 7 };
+	int size = sizeof(nums) / sizeof(nums[0]);
+
+	printf("Before: ");
+	print_array(nums, size);
+
+	merge_sort(nums, 0, size-1);
+
+	printf("After: ");
+	print_array(nums, size);
+
+	return 0;
+}
+
 void merge(int *nums, int left, int middle, int right)
 {
 	int i, j, k;
@@ -51,36 +71,25 @@ void merge(int *nums, int left, int middle, int right)
 	}
 }
 
-void mergeSort(int* nums, int left, int right)
+void merge_sort(int* nums, int left, int right)
 {
 	if(left < right)
 	{
 		int middle = left + (right - left) / 2;
 
-		mergeSort(nums, left, middle);
-		mergeSort(nums, middle + 1, right);
+		merge_sort(nums, left, middle);
+		merge_sort(nums, middle + 1, right);
 
 		merge(nums, left, middle, right);
 	}
 }
 
-void printArray(int* nums, int arrSize)
+void print_array(int* nums, int arr_size)
 {
-	for(int i = 0; i < arrSize; i++)
+	for(int i = 0; i < arr_size; i++)
 	{
 		printf("%d ", nums[i]);
 	}
 	printf("\n");
 }
 
-int main()
-{
-	int nums[] = { 12, 11, 13, 5, 6, 7 };
-	int size = sizeof(nums) / sizeof(nums[0]);
-
-	printArray(nums, size);
-	mergeSort(nums, 0, size-1);
-	printArray(nums, size);
-
-	return 0;
-}

@@ -1,12 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmp(const void *a, const void *b)
+int cmp(const void *a, const void *b);
+int binary_search(int* nums, int left, int right, int val);
+
+int main()
 {
-	return (*(int*)a - *(int*)b);
+	int nums[] = { 32, 4, 13, 6, 3 };
+	int size = sizeof(nums) / sizeof(nums[0]);
+
+	printf("Result: %d\n", binary_search(nums, 0, size-1, 13));
+
+	return 0;
 }
 
-int binarySearch(int* nums, int left, int right, int val)
+int cmp(const void *a, const void *b)
+{
+	return ((*(int*)a > *(int*)b) - (*(int*)a < *(int*)b));
+}
+
+int binary_search(int* nums, int left, int right, int val)
 {
 	// first we sort the given array
 	// because binary search only works
@@ -26,19 +39,10 @@ int binarySearch(int* nums, int left, int right, int val)
 		}
 		if(nums[middle] < val)
 		{
-			return binarySearch(nums, middle + 1, right, val);
+			return binary_search(nums, middle + 1, right, val);
 		}
-		return binarySearch(nums, left, middle - 1, val);
+		return binary_search(nums, left, middle - 1, val);
 	}
 	return -1;
 }
 
-int main()
-{
-	int nums[] = { 32, 4, 13, 6, 3 };
-	int size = sizeof(nums) / sizeof(nums[0]);
-
-	printf("Result: %d\n", binarySearch(nums, 0, size-1, 13));
-
-	return 0;
-}

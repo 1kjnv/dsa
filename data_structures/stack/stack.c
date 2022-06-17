@@ -9,6 +9,32 @@ struct stack
 	unsigned capacity;
 };
 
+struct stack* create(unsigned capacity);
+int is_full(struct stack *s);
+int is_empty(struct stack *s);
+void push(struct stack *s, int val);
+int pop(struct stack *s);
+int peek(struct stack *s);
+void print_stack(struct stack *s);
+
+int main()
+{
+	struct stack* s = create(20);
+	
+	push(s, 10);
+	push(s, 20);
+	push(s, 30);
+
+	print_stack(s);
+
+	pop(s);
+	print_stack(s);
+
+	printf("\nPeek: %d\n", peek(s));
+
+	return 0;
+}
+
 struct stack* create(unsigned capacity)
 {
 	struct stack* s = (struct stack*) malloc(sizeof(struct stack));
@@ -19,19 +45,19 @@ struct stack* create(unsigned capacity)
 	return s;
 }
 
-int isFull(struct stack* s)
+int is_full(struct stack* s)
 {
 	return (s->top == s->capacity - 1);
 }
 
-int isEmpty(struct stack* s)
+int is_empty(struct stack* s)
 {
 	return (s->top == -1);
 }
 
 void push(struct stack* s, int val)
 {
-	if(isFull(s))
+	if(is_full(s))
 	{
 		return;
 	}
@@ -40,7 +66,7 @@ void push(struct stack* s, int val)
 
 int pop(struct stack* s)
 {
-	if(isEmpty(s))
+	if(is_empty(s))
 	{
 		return INT_MIN;
 	}
@@ -49,16 +75,16 @@ int pop(struct stack* s)
 
 int peek(struct stack* s)
 {
-	if(isEmpty(s))
+	if(is_empty(s))
 	{
 		return INT_MIN;
 	}
 	return s->items[s->top];
 }
 
-void printStack(struct stack* s)
+void print_stack(struct stack* s)
 {
-	if(isEmpty(s))
+	if(is_empty(s))
 	{
 		printf("EMPTY STACK!\n");
 		return;
@@ -70,20 +96,3 @@ void printStack(struct stack* s)
 	printf("\n");
 }
 
-int main()
-{
-	struct stack* s = create(20);
-	
-	push(s, 10);
-	push(s, 20);
-	push(s, 30);
-
-	printStack(s);
-
-	pop(s);
-	printStack(s);
-
-	printf("\nPeek: %d\n", peek(s));
-
-	return 0;
-}
