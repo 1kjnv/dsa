@@ -23,3 +23,4 @@
 	 - [Quicksort](algorithms/sorting/quick_sort.c)
 	 - [Mergesort](algorithms/sorting/merge_sort.c)
 	 - [Selection sort](algorithms/sorting/selection_sort.c)
+	 - [Insertion sort](algorithms/sorting/insertion_sort.c)
