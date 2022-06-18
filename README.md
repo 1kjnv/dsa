@@ -22,3 +22,4 @@
  - [Sorting](algorithms/sorting/):
 	 - [Quicksort](algorithms/sorting/quick_sort.c)
 	 - [Mergesort](algorithms/sorting/merge_sort.c)
+	 - [Selection sort](algorithms/sorting/selection_sort.c)
