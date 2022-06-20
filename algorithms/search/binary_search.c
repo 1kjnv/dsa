@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int cmp(const void *a, const void *b);
 int binary_search(int* nums, int left, int right, int val);

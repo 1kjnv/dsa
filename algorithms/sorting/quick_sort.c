@@ -45,7 +45,7 @@ int partition(int* nums, int left, int right)
 	return (i + 1);
 }
 
-void quicksort(int* nums, int left, int right)
+void quick_sort(int* nums, int left, int right)
 {
 	if(left < right)
 	{
