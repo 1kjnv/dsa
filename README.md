@@ -12,6 +12,7 @@
  - [Priority Queue](data_structures/priority_queue/priority_queue.c)
  - [Binary Tree](data_structures/binary_tree/binary_tree.c)
  - [BST(Binary Search Tree)](data_structures/binary_search_tree/binary_search_tree.c)
+ - [AVL Tree](data_structures/avl_tree/avl_tree.c)
  - [Heap](data_structures/heap/):
 	 - [Max Heap](data_structures/heap/max_heap.c)
 	 - [Min Heap](data_structures/heap/min_heap.c)
